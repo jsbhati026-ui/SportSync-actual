@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Outer Dark Navy S shape -->
+  <path d="M 68 18 C 55 10 32 12 24 24 C 16 36 18 52 28 62 L 18 84 C 32 94 56 92 68 82 C 78 72 82 58 76 46 L 68 18 Z" fill="#0D1340"/>
+  <!-- Vibrant Electric Cyan / Blue Ribbon -->
+  <path d="M 62 26 C 52 20 36 22 30 30 C 24 38 26 50 36 58 C 42 63 46 68 44 76 C 42 82 36 86 28 84 L 38 88 C 54 88 66 78 68 64 C 70 54 62 46 52 40 C 44 35 40 30 42 24 C 44 20 52 18 60 22 L 62 26 Z" fill="url(#cyanGrad)"/>
+  <!-- Vivid Violet / Purple Accent Ribbon -->
+  <path d="M 40 34 C 46 38 52 44 50 52 C 48 60 40 64 34 62 C 30 60 28 54 30 48 C 32 42 36 36 40 34 Z" fill="url(#purpleGrad)"/>
+  <!-- Central Ball with Seam -->
+  <circle cx="50" cy="50" r="13" fill="#0D1340" />
+  <circle cx="50" cy="50" r="10" fill="#7836D6" />
+  <path d="M 44 43 C 48 48 48 52 44 57" stroke="#00A3FF" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M 56 43 C 52 48 52 52 56 57" stroke="#00A3FF" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <circle cx="50" cy="50" r="4" fill="#0D1340"/>
+
+  <defs>
+    <linearGradient id="cyanGrad" x1="20" y1="20" x2="70" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00A8FF"/>
+      <stop offset="100%" stop-color="#0066FF"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="30" y1="30" x2="55" y2="65" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9333EA"/>
+      <stop offset="100%" stop-color="#6B21A8"/>
+    </linearGradient>
+  </defs>
+</svg>

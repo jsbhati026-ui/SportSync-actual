@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // User profiles & preferences
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow write: if isOwner(userId);
+
+      // User notifications
+      match /notifications/{notificationId} {
+        allow read: if isOwner(userId);
+        allow write: if isSignedIn();
+      }
+
+      // User friends
+      match /friends/{friendId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Matches and pickup squads
+    match /matches/{matchId} {
+      allow read: if true;
+      allow create, update: if true;
+      allow delete: if isSignedIn();
+    }
+
+    // Venues and sports facilities
+    match /venues/{venueId} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+
+    // Bookings and reservations
+    match /bookings/{bookingId} {
+      allow read: if true;
+      allow create, update: if true;
+    }
+
+    // Community Sports Equipment & Gear Rentals
+    match /gear/{gearId} {
+      allow read: if true;
+      allow create, update: if true;
+      allow delete: if isSignedIn();
+    }
+
+    // Direct Chat messages between connected players
+    match /chats/{chatId}/messages/{messageId} {
+      allow read, write: if isSignedIn();
+    }
+
+    // Post-Match Player Ratings & Endorsements
+    match /ratings/{ratingId} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update, delete: if isSignedIn() && (resource.data.reviewerId == request.auth.uid);
+    }
+  }
+}

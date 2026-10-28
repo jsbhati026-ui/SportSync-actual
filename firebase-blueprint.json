@@ -1,0 +1,209 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile containing personal sports preferences and coordinates",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "favoriteSports": { "type": "array" },
+        "city": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "email", "favoriteSports"]
+    },
+    "Match": {
+      "title": "Sport Match",
+      "description": "Hosted sport match with location coordinates and sport type",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "sport": { "type": "string" },
+        "venueName": { "type": "string" },
+        "area": { "type": "string" },
+        "city": { "type": "string" },
+        "date": { "type": "string" },
+        "time": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "spotsTotal": { "type": "number" },
+        "spotsFilled": { "type": "number" },
+        "pricePerPlayer": { "type": "number" },
+        "skillLevel": { "type": "string" },
+        "hostId": { "type": "string" },
+        "hostName": { "type": "string" },
+        "hostAvatar": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "sport", "city", "lat", "lng", "hostId"]
+    },
+    "Notification": {
+      "title": "Match Notification",
+      "description": "Proximity notification triggered when a match of favorite sport is created within radius",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "matchId": { "type": "string" },
+        "matchTitle": { "type": "string" },
+        "sport": { "type": "string" },
+        "venueName": { "type": "string" },
+        "distanceKm": { "type": "number" },
+        "timestamp": { "type": "string" },
+        "read": { "type": "boolean" }
+      },
+      "required": ["id", "userId", "matchId", "sport", "distanceKm"]
+    },
+    "Friend": {
+      "title": "Player Friend",
+      "description": "Sports friend connection between players",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "friendId": { "type": "string" },
+        "friendName": { "type": "string" },
+        "friendAvatar": { "type": "string" },
+        "friendSport": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "friendId", "friendName"]
+    },
+    "ChatMessage": {
+      "title": "Chat Message",
+      "description": "Real-time communication message between players or friends",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "receiverName": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "isQuickInvite": { "type": "boolean" }
+      },
+      "required": ["id", "senderId", "receiverId", "text", "timestamp"]
+    },
+    "PlayerRating": {
+      "title": "Post-Match Player Rating",
+      "description": "Post-match peer rating and endorsement for teammates or opponents",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "reviewerId": { "type": "string" },
+        "reviewerName": { "type": "string" },
+        "targetPlayerId": { "type": "string" },
+        "targetPlayerName": { "type": "string" },
+        "matchId": { "type": "string" },
+        "matchTitle": { "type": "string" },
+        "overallRating": { "type": "number" },
+        "punctualityRating": { "type": "number" },
+        "sportsmanshipRating": { "type": "number" },
+        "selectedTags": { "type": "array" },
+        "feedbackComment": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "reviewerId", "targetPlayerId", "overallRating", "createdAt"]
+    },
+    "Venue": {
+      "title": "Sports Venue",
+      "description": "Sports turf, court or academy facility",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "city": { "type": "string" },
+        "area": { "type": "string" },
+        "address": { "type": "string" },
+        "sports": { "type": "array" },
+        "rating": { "type": "number" },
+        "startingPrice": { "type": "number" },
+        "courts": { "type": "array" }
+      },
+      "required": ["id", "name", "city", "area", "sports"]
+    },
+    "Booking": {
+      "title": "Court Reservation",
+      "description": "User reservation for turf or court",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "bookingRef": { "type": "string" },
+        "userId": { "type": "string" },
+        "venueId": { "type": "string" },
+        "courtId": { "type": "string" },
+        "date": { "type": "string" },
+        "slot": { "type": "object" },
+        "totalPaid": { "type": "number" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "bookingRef", "venueId", "courtId", "date"]
+    },
+    "Gear": {
+      "title": "Sports Equipment Item",
+      "description": "User-listed sports equipment for rent",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "sport": { "type": "string" },
+        "pricePerDay": { "type": "number" },
+        "depositRefundable": { "type": "number" },
+        "condition": { "type": "string" },
+        "city": { "type": "string" },
+        "area": { "type": "string" },
+        "pickupLocation": { "type": "string" },
+        "owner": { "type": "object" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "title", "sport", "pricePerDay"]
+    }
+  },
+  "firestore": {
+    "/gear/{gearId}": {
+      "schema": "Gear",
+      "description": "Community sports gear listed by users for rent"
+    },
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Individual user preferences and coordinates"
+    },
+    "/matches/{matchId}": {
+      "schema": "Match",
+      "description": "Public games and matches hosted by users"
+    },
+    "/venues/{venueId}": {
+      "schema": "Venue",
+      "description": "Sports venue directory"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Turf and court bookings"
+    },
+    "/users/{userId}/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "User specific proximity match alerts"
+    },
+    "/users/{userId}/friends/{friendId}": {
+      "schema": "Friend",
+      "description": "User sports friends connection"
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": "ChatMessage",
+      "description": "Direct message thread between connected athletes"
+    },
+    "/ratings/{ratingId}": {
+      "schema": "PlayerRating",
+      "description": "Post-game sportsmanship and skill reviews"
+    }
+  }
+}

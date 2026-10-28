@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var fetchDesc = Object.getOwnPropertyDescriptor(window, 'fetch') ||
+                          (window.Window && Object.getOwnPropertyDescriptor(window.Window.prototype, 'fetch'));
+          if (!fetchDesc || !fetchDesc.set) {
+            Object.defineProperty(window, 'fetch', {
+              get: function() {
+                return originalFetch;
+              },
+              set: function(newFetch) {
+                originalFetch = newFetch;
+              },
+              configurable: true,
+              enumerable: true,
+            });
+          }
+        } catch (e) {
+          // Gracefully continue
+        }
+
+        window.addEventListener('error', function(event) {
+          if (event && event.message && event.message.indexOf('fetch') !== -1 && event.message.indexOf('only a getter') !== -1) {
+            event.preventDefault();
+            event.stopPropagation();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
+    <title>SportSync — Book Venues, Find Players & Rent Sports Gear</title>
+    <meta name="description" content="Premium sports platform for court & turf venue booking, matchmaking & finding players, and sports gear rental." />
+    <meta property="og:title" content="SportSync — Book Venues, Find Players & Rent Sports Gear" />
+    <meta property="og:description" content="Premium sports platform for court & turf venue booking, matchmaking & finding players, and sports gear rental." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body class="font-sans antialiased text-slate-900 bg-slate-50 selection:bg-blue-600 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

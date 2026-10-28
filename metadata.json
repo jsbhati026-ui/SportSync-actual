@@ -1,0 +1,10 @@
+{
+  "name": "SportSync",
+  "description": "Premium sports platform for court & turf venue booking, matchmaking & finding players, and sports gear rental.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
